@@ -115,27 +115,27 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 test('renders all fields text when all fields are submitted.', async () => {
     render(<ContactForm />);
 
-    const firstNameField = screen.getByText(/first name/i);
-    const lastNameField = screen.getByText(/last name/i);
-    const emailField = screen.getByText(/email/i);
-    const messageFiled = screen.getByText(/message/i);
+    const firstNameField = screen.getByLabelText(/first name*/i);
+    const lastNameField = screen.getByLabelText(/last name*/i);
+    const emailField = screen.getByLabelText(/email*/i);
+    const messageFiled = screen.getByLabelText(/message/i);
 
-    userEvent.type(firstNameField, "adfdd");
-    userEvent.type(lastNameField, 'Berlin');
-    userEvent.type(emailField, 'asdf@gmail.com');
-    userEvent.type(messageFiled, 'message')
+    userEvent.type(firstNameField, "Daehanminkuk");
+    userEvent.type(lastNameField, "Korea");
+    userEvent.type(emailField, "korea@gmail.com");
+    userEvent.type(messageFiled, "messageDisplay")
 
 
-    const submitButton = await screen.findByRole('button');
+    const submitButton = screen.getByRole('button');
     userEvent.click(submitButton);
 
 
 
     await waitFor(() => {
-        const firstnameDisplay = screen.queryByText(/first name/i);
-        const lastnameDisplay = screen.queryByText(/last name/i);
-        const emailDisplay = screen.queryByText(/email*/i);
-        const messageDisplay = screen.queryByTestId(/message/i);
+        const firstnameDisplay = screen.queryByText("Daehanminkuk");
+        const lastnameDisplay = screen.queryByText("Korea");
+        const emailDisplay = screen.queryByText("korea@gmail.com");
+        const messageDisplay = screen.queryByTestId("messageDisplay");
 
         expect(firstnameDisplay).toBeInTheDocument();
         expect(lastnameDisplay).toBeInTheDocument();
