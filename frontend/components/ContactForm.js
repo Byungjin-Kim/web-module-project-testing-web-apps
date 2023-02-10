@@ -119,7 +119,7 @@ const ContactForm = () => {
           {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
         </div>
 
-        {displayData && <DisplayComponent form={form}/>}
+        {displayData && <DisplayComponent form={form} />}
 
         <button>Submit</button>
       </form>
